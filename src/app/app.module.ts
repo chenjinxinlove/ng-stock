@@ -11,6 +11,7 @@ import { ProductComponent } from './product/product.component';
 import { StarsComponent } from './stars/stars.component';
 import { ProductDetailComponent } from './product-detail/product-detail.component';
 import { HomeComponent } from './home/home.component';
+import { ProductService } from './shared/product.service';
 
 @NgModule({
   // [,deklə'reiʃənz] 声明
@@ -30,7 +31,9 @@ import { HomeComponent } from './home/home.component';
     AppRoutingModule
   ],
   //  [prə'vaɪdə] 供应者
-  providers: [],
+  providers: [
+    ProductService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

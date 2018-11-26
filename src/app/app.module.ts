@@ -9,6 +9,8 @@ import { SearhComponent } from './searh/searh.component';
 import { CarouselComponent } from './carousel/carousel.component';
 import { ProductComponent } from './product/product.component';
 import { StarsComponent } from './stars/stars.component';
+import { ProductDetailComponent } from './product-detail/product-detail.component';
+import { HomeComponent } from './home/home.component';
 
 @NgModule({
   // [,deklə'reiʃənz] 声明
@@ -19,7 +21,9 @@ import { StarsComponent } from './stars/stars.component';
     SearhComponent,
     CarouselComponent,
     ProductComponent,
-    StarsComponent
+    StarsComponent,
+    ProductDetailComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Product, ProductService } from '../shared/product.service';
 import { FormControl } from '@angular/forms';
 import { debounceTime } from 'rxjs/operators';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-product',
@@ -9,7 +10,7 @@ import { debounceTime } from 'rxjs/operators';
   styleUrls: ['./product.component.less']
 })
 export class ProductComponent implements OnInit {
-  private products: Product[];
+  private products: Observable<Product[]>;
   private keyword: string;
   private titleFilter: FormControl = new FormControl();
   constructor(private productService:  ProductService) {

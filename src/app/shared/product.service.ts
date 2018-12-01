@@ -1,10 +1,12 @@
 import { Injectable } from '@angular/core';
+import { Http } from '@angular/http';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class ProductService {
-
   private products: Product[] = [
     new Product(1, 'ss1', 1.99, 3.5, 'ssssss', ['ddd', 'sss']),
     new Product(2, 'ss2', 1.99, 2.5, 'ssssss', ['ddd', 'sss']),
@@ -12,28 +14,27 @@ export class ProductService {
     new Product(4, 'ss4', 1.99, 1.5, 'ssssss', ['ddd', 'sss']),
     new Product(5, 'ss5', 1.99, 2.5, 'ssssss', ['ddd', 'sss']),
     new Product(6, 'ss6', 1.99, 3.5, 'ssssss', ['ddd', 'sss']),
-  ];
+  ]
 
   private comments: Comment[] = [
     new Comment(1, 1, '2019-9-10', 4, 'dddd'),
     new Comment(2, 1, '2019-9-10', 4, 'dddd'),
     new Comment(3, 1, '2019-9-10', 4, 'dddd'),
     new Comment(4, 2, '2019-9-10', 4, 'dddd'),
-    new Comment(5, 3, '2019-9-10', 4, 'dddd')
-  ];
-  constructor() { }
-  getProducts() {
-    return this.products;
+    new Comment(5, 3, '2019-9-10', 4, 'dddd'),
+  ]
+  constructor(private http: Http) {}
+  getProducts(): Observable<Product[]> {
+    return this.http.get('/api/priducts').pipe(map(res => res.json()));
   }
 
-  getProduct(id: number): Product {
-    return this.products.find((product) => product.id === Number(id));
+  getProduct(id: number): Observable<Product> {
+    return this.http.get(`/api/priducts/${id}`).pipe(map(res => res.json()));
   }
 
-  getCommentsForProductIds(id: number): Comment[] {
-    return this.comments.filter((comment: Comment) => comment.productId === Number(id));
+  getCommentsForProductIds(id: number): Observable<Comment>[] {
+    return this.http.get(`/api/comment/${id}`).pipe(map(res => res.json()));
   }
-
 }
 
 export class Product {
